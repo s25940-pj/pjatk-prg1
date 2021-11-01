@@ -1,23 +1,30 @@
 # include <iostream>
 
-
-int input;
-
-auto ask_user_for_integer() -> int
+auto ask_user_for_integer(std::string prompt) -> int
 {
-std::cout << "Type in int, please: ";
-std::cin >> input;
+    std::cout << prompt << " int:";
+	
+    auto n = std::string{};
+    std::getline(std::cin, n);
+    
+    try {
+        return std::stoi(n);
+        throw(n); // If input was not a valid int type.
+    }
 
-return input;  
+    catch(std::string error) {
+        std::cout << error << " is not a valid int type.";
+        ask_user_for_integer("Type in int, please. ");
+    }     
 }
 
 
 auto main() -> int
 {
-auto const a = ask_user_for_integer();
-auto const b = ask_user_for_integer();
+    auto const a = ask_user_for_integer("Type in int, please. ");
+    auto const b = ask_user_for_integer("Type in int, please. ");
 
-std::cout << (a + b) << "\n";
+    std::cout << (a + b) << "\n";
 
-return 0;
+    return 0;
 }
