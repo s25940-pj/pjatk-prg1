@@ -7,15 +7,7 @@ auto ask_user_for_integer(std::string prompt) -> int
     auto n = std::string{};
     std::getline(std::cin, n);
     
-    try {
-        return std::stoi(n);
-        throw(n); // If input was not a valid int type.
-    }
-
-    catch(std::string error) {
-        std::cout << error << " is not a valid int type.";
-        ask_user_for_integer("Type in int, please. ");
-    }     
+    return std::stoi(n);    
 }
 
 
